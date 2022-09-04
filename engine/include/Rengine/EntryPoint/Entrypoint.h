@@ -5,7 +5,7 @@ namespace RENGINE
     class Application
     {
     public:
-        Application();
+        Application(const std::string& settingsFilePath);
         virtual ~Application();
 
         void run();

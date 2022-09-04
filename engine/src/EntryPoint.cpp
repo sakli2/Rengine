@@ -9,7 +9,7 @@
 
 namespace RENGINE
 {
-    Application::Application()
+    Application::Application(const std::string& settingsFilePath)
     {
         ResourceManager::provideResources<ConsoleLog,GLFW_window>();
     }

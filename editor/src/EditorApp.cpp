@@ -6,6 +6,7 @@ class EditorApp : public RENGINE::Application
 {
 public:
     EditorApp()
+        :RENGINE::Application("const std::string& settingsFilePath")
     {
         
     }
