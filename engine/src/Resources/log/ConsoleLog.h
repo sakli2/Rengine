@@ -1,15 +1,17 @@
 #pragma once 
-#include <iostream>
-#include <Rengine/Resources/Log.h>
+#include <pch.h>
+#include <Rengine/Resources/Types/Log.h>
 
-
-class ConsoleLog : public Log
+namespace RENGINE
 {
-public:
-    ConsoleLog();
-    virtual ~ConsoleLog() override;
+    class ConsoleLog : public Log
+    {
+    public:
+        ConsoleLog();
+        virtual ~ConsoleLog() override;
 
-    virtual void write(const std::string& text) override;
-private:
+        virtual void write(const std::string& text) override;
+    private:
 
-};
+    };
+}

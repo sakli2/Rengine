@@ -2,16 +2,15 @@
 #include <Rengine.h>
 #include <iostream>
 
-class EditorApp : public Application
+class EditorApp : public RENGINE::Application
 {
 public:
     EditorApp()
-        :Application()
     {
         
     }
 
-    ~EditorApp()
+    virtual ~EditorApp() override
     {
 
     }
@@ -19,7 +18,7 @@ public:
 
 };
 
-Application* CreateApplication()
+RENGINE::Application* RENGINE::CreateApplication()
 {
     return new EditorApp();
 } 

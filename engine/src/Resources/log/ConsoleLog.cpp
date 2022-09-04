@@ -1,19 +1,21 @@
 #include "ConsoleLog.h"
-#include <Rengine/ResourceManager.h>
 
 
-ConsoleLog::ConsoleLog()
-    :Log()
+namespace RENGINE
 {
-    
-}
+    ConsoleLog::ConsoleLog()
+        :Log()
+    {
 
-ConsoleLog::~ConsoleLog()
-{
+    }
 
-}
+    ConsoleLog::~ConsoleLog()
+    {
 
-void ConsoleLog::write(const std::string& text)
-{
-    std::cout << text << std::endl;
+    }
+
+    void ConsoleLog::write(const std::string& text)
+    {
+        std::cout << text << std::endl;
+    }
 }

@@ -1,21 +1,22 @@
 #pragma once
-#include <string>
+#include <pch.h>
+#include <cxxabi.h>
 
-class Utilities
+#define quote(x) #x
+namespace RENGINE
 {
-public:
-    template<typename T>
-    std::string static getClassName()
+    class Utilities
     {
+    public:
+        template<typename T>
+        std::string static getClassName()
         {
-        std::string c_name = std::string(typeid(T).name());
-        int i = 0;
-        while (isdigit(c_name.at(i)))
-        {
-            i++;
+            int status;
+            std::string className = std::string(abi::__cxa_demangle(typeid(T).name(),0,0,&status));
+
+            std::string namespaceName = std::string(quote(RENGINE)) + "::";
+            className = className.substr(className.find_first_of(namespaceName) + namespaceName.size(), className.size());
+            return className;
         }
-        std::string className = std::string(c_name.substr(i,c_name.size()));
-        return className;
+    };
 }
-    }
-};

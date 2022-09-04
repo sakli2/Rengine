@@ -1,12 +1,15 @@
 #pragma once
 
-class Application
+namespace RENGINE
 {
-public:
-    Application();
-    virtual ~Application();
+    class Application
+    {
+    public:
+        Application();
+        virtual ~Application();
 
-    void run();
-};
+        void run();
+    };
 
-extern Application* CreateApplication();
+    extern Application* CreateApplication();
+}
