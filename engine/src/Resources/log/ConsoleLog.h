@@ -1,10 +1,12 @@
 #pragma once 
 #include <pch.h>
 #include <Rengine/Resources/Types/Log.h>
+#include <Rengine/Resources/ResourceLoader.h>
 
 namespace RENGINE
-{
-    class ConsoleLog : public Log
+{                                
+
+    CREATE_RESOURCE(ConsoleLog, Logger)
     {
     public:
         ConsoleLog();
@@ -15,3 +17,4 @@ namespace RENGINE
 
     };
 }
+

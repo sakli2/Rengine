@@ -1,15 +1,15 @@
 #pragma once
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
-#include <Rengine/Resources/Types/Window.h>
+#include <Rengine/Resources/ResourceLoader.h>
 
 namespace RENGINE
 {
-    class GLFW_window : public  Window
+    CREATE_RESOURCE(GLFW_Window, Window)
     {
     public:
-        GLFW_window();
-        virtual ~GLFW_window() override;
+        GLFW_Window();
+        virtual ~GLFW_Window() override;
 
         virtual bool update() override;
     private:

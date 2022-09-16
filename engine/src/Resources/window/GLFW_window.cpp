@@ -3,8 +3,7 @@
 
 namespace RENGINE
 {
-    GLFW_window::GLFW_window()
-        :Window()
+    GLFW_Window::GLFW_Window()
     {
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
@@ -12,14 +11,14 @@ namespace RENGINE
 
         m_Window = glfwCreateWindow(800, 600, "Window", nullptr, nullptr);
     }
-    GLFW_window::~GLFW_window() 
+    GLFW_Window::~GLFW_Window() 
     {
          glfwDestroyWindow(m_Window);
         glfwTerminate();
     }
 
 
-    bool GLFW_window::update()
+    bool GLFW_Window::update()
     {
 
 

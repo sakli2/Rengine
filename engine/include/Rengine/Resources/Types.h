@@ -11,6 +11,6 @@ namespace RENGINE
 {
 
     
-    using ResourceManager = ResourceManager_<Log,Window>;
+    using ResourceManager = ResourceManager_<Logger,Window>;
 }
 //------------------------------------

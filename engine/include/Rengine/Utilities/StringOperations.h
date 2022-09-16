@@ -3,6 +3,7 @@
 #include <cxxabi.h>
 
 #define quote(x) #x
+
 namespace RENGINE
 {
     class Utilities
@@ -18,5 +19,7 @@ namespace RENGINE
             className = className.substr(className.find_first_of(namespaceName) + namespaceName.size(), className.size());
             return className;
         }
+
+        static std::string quotate(const std::string& string); 
     };
 }

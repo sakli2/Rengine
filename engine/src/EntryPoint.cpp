@@ -1,17 +1,20 @@
 #include <pch.h>
 #include <Rengine/EntryPoint/Entrypoint.h>
-#include <Rengine/Resources/Resources.h>
 
+#include <Rengine/Resources/ResourceManager.h>
 #include "Resources/log/ConsoleLog.h"
 #include "Resources/window/GLFW_window.h"
-
-
+#include <Rengine/SettingsManager/ConfigManager.h>
 
 namespace RENGINE
 {
     Application::Application(const std::string& settingsFilePath)
     {
-        ResourceManager::provideResources<ConsoleLog,GLFW_window>();
+       //ResourceManager::provideResources<ConsoleLog>();
+
+        std::cout << "\033[1;31mbold red text\033[0m\n";
+        CONFIG_PARAMETER("asd");
+        ////ConfigManager::getValue<std::string>("Resources", "Log") ;
     }
 
     Application::~Application()
@@ -36,10 +39,10 @@ namespace RENGINE
         createInfo.pApplicationInfo = &appInfo;
 
 
-        while(!ResourceManager::getResource<Window>()->update())
-        {
-            //ResourceManager::getResource<Log>()->write("hi");
-        }
+        //while(!ResourceManager::getResource<Window>()->update())
+        //{
+        //    //ResourceManager::getResource<Log>()->write("hi");
+        //}
 
     } 
 }

@@ -4,9 +4,7 @@
 namespace RENGINE
 {
     ConsoleLog::ConsoleLog()
-        :Log()
     {
-
     }
 
     ConsoleLog::~ConsoleLog()

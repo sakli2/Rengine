@@ -3,11 +3,11 @@
 
 namespace RENGINE
 {
-    class Log
+    class Logger
     {
     public:
-        Log() {}
-        virtual ~Log() {}
+        Logger() {}
+        virtual ~Logger() {}
 
         virtual void write(const std::string& text) = 0;
     };

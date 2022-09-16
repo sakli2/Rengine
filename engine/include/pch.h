@@ -12,7 +12,11 @@
 #include <unordered_map>
 #include <tuple>
 #include <stdexcept>
-
+#include <fstream>
 
 //3rd Pary libaries
 #include <glm/glm.hpp>
+
+//Project precompiled headers
+#include <Rengine/Utilities/FileManager.h>
+#include <Rengine/Utilities/StringOperations.h>

@@ -3,8 +3,6 @@
 #include "Rengine/Utilities/StringOperations.h"
 #include "Rengine/Utilities/LOG.h"
 
-
-
 namespace RENGINE
 {
     template <typename... ResourceList>
@@ -12,7 +10,8 @@ namespace RENGINE
     {
     public:
         ResourceManager_() = default;
-        
+    
+
         template<typename Resource>
         inline static constexpr Resource*& getResource() { return std::get<Resource*>(m_Resources); }
         
@@ -33,13 +32,20 @@ namespace RENGINE
         template<typename Resource,typename ResourceIterator,typename... Resources> 
         inline static void setBaseResource()
         {
+            
             if(std::is_base_of<ResourceIterator, Resource>())
             {
                 ResourceIterator*& base_resource = getResource<ResourceIterator>();
                 if(base_resource != nullptr)
+                {
+                    LOG::write(std::string("Switching ") +  Utilities::getClassName<ResourceIterator>() + " platform to \'" +  Utilities::getClassName<Resource>() + "\'!");
                     delete base_resource;
-                base_resource = reinterpret_cast<ResourceIterator*>(new Resource());    
-                LOG::write(std::string("Using ") +  Utilities::getClassName<ResourceIterator>() + " platform \'" +  Utilities::getClassName<Resource>() + "\'!");
+                }
+                else 
+                {
+                    LOG::write(std::string("Using ") +  Utilities::getClassName<ResourceIterator>() + " platform \'" +  Utilities::getClassName<Resource>() + "\'!");
+                }
+                base_resource = reinterpret_cast<ResourceIterator*>(new Resource());
             }
             else
             {

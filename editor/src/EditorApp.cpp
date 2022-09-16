@@ -22,5 +22,6 @@ public:
 RENGINE::Application* RENGINE::CreateApplication()
 {
     return new EditorApp();
+    std::cout << "asd";
 } 
 
