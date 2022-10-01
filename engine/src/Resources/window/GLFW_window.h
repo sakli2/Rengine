@@ -1,7 +1,9 @@
 #pragma once
-#define GLFW_INCLUDE_VULKAN
-#include <GLFW/glfw3.h>
-#include <Rengine/Resources/ResourceLoader.h>
+
+#include <Rengine/Resources/Resources.h>
+
+
+struct GLFWwindow;
 
 namespace RENGINE
 {
@@ -13,6 +15,6 @@ namespace RENGINE
 
         virtual bool update() override;
     private:
-        GLFWwindow* m_Window;
+        GLFWwindow* window;
     };
 }

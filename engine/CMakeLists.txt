@@ -3,6 +3,9 @@ project(Rengine_ENGINE VERSION 0.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=1)
+#add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
+
 #exteral libaries
 add_subdirectory(external/glfw)
 add_subdirectory(external/glm)
@@ -26,7 +29,7 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         glm
     PRIVATE
-        ${Vulkan_INCLUDE_DIRS}
+        ${VULKAN_INCLUDE_DIRS}
         glfw
 )
 
@@ -34,8 +37,6 @@ target_link_libraries(${PROJECT_NAME}
     PUBLIC  
         glm
     PRIVATE
-        ${Vulkan_LIBARIES}
+        ${Vulkan_LIBRARIES}
         glfw
 )
-
-add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)

@@ -6,7 +6,7 @@ class EditorApp : public RENGINE::Application
 {
 public:
     EditorApp()
-        :RENGINE::Application("const std::string& settingsFilePath")
+        :RENGINE::Application()
     {
         
     }
@@ -22,6 +22,5 @@ public:
 RENGINE::Application* RENGINE::CreateApplication()
 {
     return new EditorApp();
-    std::cout << "asd";
 } 
 

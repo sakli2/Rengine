@@ -13,10 +13,15 @@
 #include <tuple>
 #include <stdexcept>
 #include <fstream>
+#include <cstring>
 
 //3rd Pary libaries
 #include <glm/glm.hpp>
 
+
+
 //Project precompiled headers
 #include <Rengine/Utilities/FileManager.h>
 #include <Rengine/Utilities/StringOperations.h>
+#include <Rengine/SettingsManager/ConfigManager.h>
+#include <Rengine/Resources/ResourceMacros.h>

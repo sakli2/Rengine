@@ -1,9 +1,7 @@
 #pragma once
 #include <pch.h>
 
-#define CONFIG_PARAMETER(VALUE) \
-float f; \
-ConfigManager::declareValue(f, "asd");
+#define CONFIG_PARAMETER(VALUE) ConfigManager::declareValue(VALUE, __FUNCTION__, #VALUE);
 
 namespace RENGINE 
 {
@@ -21,10 +19,9 @@ namespace RENGINE
             }
 
             template<typename T> 
-            inline static void declareValue(T& value, const std::string& variable)
+            inline static void declareValue(T& value,const std::string& title ,const std::string& variable)
             {
-                //std::cout << location << std::endl;
-                //value = std::get<std::unordered_map<std::string, std::unordered_map<std::string, T>>>(s_Configs()).at(title).at(variable);
+                value = std::get<std::unordered_map<std::string, std::unordered_map<std::string, T>>>(s_Configs()).at(title).at(variable);
             }
         private:
             inline static std::string getBracketInside(const std::string& inside);

@@ -1,5 +1,7 @@
 #include "GLFW_window.h"
-#include <vulkan/vulkan.h>
+
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
 
 namespace RENGINE
 {
@@ -9,11 +11,11 @@ namespace RENGINE
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-        m_Window = glfwCreateWindow(800, 600, "Window", nullptr, nullptr);
+        window = glfwCreateWindow(width, height, "Window", nullptr, nullptr);
     }
     GLFW_Window::~GLFW_Window() 
     {
-         glfwDestroyWindow(m_Window);
+        glfwDestroyWindow(window);
         glfwTerminate();
     }
 
@@ -21,8 +23,7 @@ namespace RENGINE
     bool GLFW_Window::update()
     {
 
-
         glfwPollEvents();
-        return glfwWindowShouldClose(m_Window);
+        return glfwWindowShouldClose(window);
     }
 }
