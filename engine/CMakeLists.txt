@@ -8,6 +8,8 @@ add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=1)
 #exteral libaries
 add_subdirectory(external/glfw)
 add_subdirectory(external/glm)
+add_subdirectory(external/nlohmann/json)
+
 
 find_package(Vulkan REQUIRED)
 

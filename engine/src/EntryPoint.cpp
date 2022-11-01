@@ -59,7 +59,7 @@ namespace RENGINE
 
                 //config.swapChainInfo.imageExtent
             }
-            RENGINE::VulkanAPI::VulkanSwapChain swapChain = surface.createSwapChain(config);
+            //RENGINE::VulkanAPI::VulkanSwapChain swapChain = surface.createSwapChain(config);
         }
 
         
@@ -77,7 +77,6 @@ namespace RENGINE
 
 int main()
 {
-
     RENGINE::Application* app;
     try {
         app = RENGINE::CreateApplication();

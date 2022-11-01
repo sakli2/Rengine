@@ -19,7 +19,6 @@
 #include <glm/glm.hpp>
 
 
-
 //Project precompiled headers
 #include <Rengine/Utilities/FileManager.h>
 #include <Rengine/Utilities/StringOperations.h>
