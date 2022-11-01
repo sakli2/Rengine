@@ -4,3 +4,6 @@
 [submodule "engine/external/glfw"]
 	path = engine/external/glfw
 	url = https://github.com/glfw/glfw
+[submodule "engine/external/nlohmann/json"]
+	path = engine/external/nlohmann/json
+	url = https://github.com/nlohmann/json.git
