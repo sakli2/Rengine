@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "ConsoleLogger.h"
-
 
 namespace RENGINE
 {

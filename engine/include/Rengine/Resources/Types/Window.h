@@ -1,11 +1,11 @@
 #pragma once
 #include <pch.h>
-
+#include "Rengine/RenderingApi/RenderApi.h"
 
 
 namespace RENGINE
 {
-    BASE_RESOURCE(Window)
+    class Window
     {
     public:
         Window()
@@ -16,7 +16,7 @@ namespace RENGINE
         virtual ~Window() {}
 
         virtual bool update() = 0;
-
+        virtual WindowSurface createSurface(VulkanAPI::VulkanLogicalDevice& logicalDevice) = 0;
     protected:
          float width;
          float height;

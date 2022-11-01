@@ -14,6 +14,7 @@ namespace RENGINE
     void loadBaseResources(const std::string& filePath)
     {
         ConfigManager::loadConfig(filePath);
+
         for(auto initializer : *RENGINE::s_ResourceProviders)
             initializer();
         ResourceManager::checkResourceState();

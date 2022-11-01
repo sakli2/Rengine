@@ -32,7 +32,7 @@ class ResourceName : public BaseResource
 namespace RENGINE 
 {
 
-    inline std::vector<std::function<void()>>* s_ResourceProviders = new std::vector<std::function<void()>>();
+    inline std::vector<std::function<void()>>* s_ResourceProviders = new std::vector<std::function<void()>>(); //todo change to map
     
     
     //TODO MAKE SOME STUPID MACRO

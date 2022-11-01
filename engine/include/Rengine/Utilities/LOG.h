@@ -10,6 +10,7 @@ namespace RENGINE
     public:
         static void write(const std::string& text);
         static void info(const std::string& text);
+        static void info(const int& text);
         static void warning(const std::string& text);
         static void error(const std::string& text);
     };

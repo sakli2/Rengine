@@ -25,3 +25,5 @@
 #include <Rengine/Utilities/StringOperations.h>
 #include <Rengine/SettingsManager/ConfigManager.h>
 #include <Rengine/Resources/ResourceMacros.h>
+#include <Rengine/Utilities/LOG.h>
+#include <Rengine/SettingsManager/RenderSettings.h>

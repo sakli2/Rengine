@@ -1,5 +1,5 @@
+#include "pch.h"
 #include <Rengine/Utilities/FileManager.h>
-
 namespace RENGINE 
 {
     namespace FileManager 

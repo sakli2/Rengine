@@ -4,7 +4,6 @@ project(Rengine_ENGINE VERSION 0.0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 
 add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=1)
-#add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 
 #exteral libaries
 add_subdirectory(external/glfw)
@@ -14,7 +13,7 @@ find_package(Vulkan REQUIRED)
 
 
 
-file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp" "src/*/*/*.cpp" "src/*/*/*/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp" "src/*/*/*.cpp" "src/*/*/*/*.cpp"  "src/*/*/*/*/*.cpp")
 
 add_library(${PROJECT_NAME}  ${SOURCES})
 

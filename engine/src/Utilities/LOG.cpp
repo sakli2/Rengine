@@ -1,6 +1,6 @@
+#include "pch.h"
 #include <Rengine/Utilities/LOG.h>
 #include <Rengine/Resources/ResourceManager.h>
-
 namespace RENGINE
 {
 
@@ -39,6 +39,18 @@ namespace RENGINE
         {
             std::cout << "[Warning] Logger not Initalized!" << std::endl;
             std::cout << "[INFO] " << text << std::endl;
+        }
+    }
+
+    void LOG::info(const int& text)
+    {
+        Logger* logger = ResourceManager::getResource<Logger>();
+        if(logger)
+            logger->info(std::to_string(text));
+        else
+        {
+            std::cout << "[Warning] Logger not Initalized!" << std::endl;
+            std::cout << "[INFO] " << std::to_string(text) << std::endl;
         }
     }
 

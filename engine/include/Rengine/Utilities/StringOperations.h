@@ -20,6 +20,7 @@ namespace RENGINE
             return className;
         }
 
-        static std::string quotate(const std::string& string); 
+        static std::string quotate(const std::string& string);
+        static std::string quotate(const char* string);
     };
 }

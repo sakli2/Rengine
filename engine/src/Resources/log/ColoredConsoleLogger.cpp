@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ColoredConsoleLogger.h"
 
 namespace RENGINE
