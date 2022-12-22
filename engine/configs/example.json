@@ -1,0 +1,32 @@
+{
+    "title" : "Resources", 
+
+    "Logger": "ColoredConsoleLogger",
+    "Window": "GLFW_Window",
+    "Renderer": "VulkanRaenderer",
+
+    "ResourceSettings":
+    {
+        "ColoredConsoleLogger":
+        {
+
+        },
+        "ConsoleLogger":
+        {
+
+        },
+        "GLFW_Window":
+        {
+            "width" : 800,
+            "height": 600
+        },
+
+        "VulkanRenderer":
+        {
+            "debugLvl": true,
+            "validationLayers": [],
+            "extensions": [],
+            "deviceExtensions": []
+        }
+    }
+}

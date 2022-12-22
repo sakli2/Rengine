@@ -15,6 +15,18 @@ find_package(Vulkan REQUIRED)
 
 
 
+
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
+
+
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp" "src/*/*/*.cpp" "src/*/*/*/*.cpp"  "src/*/*/*/*/*.cpp")
 
 add_library(${PROJECT_NAME}  ${SOURCES})
@@ -29,6 +41,7 @@ target_include_directories(${PROJECT_NAME}
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         glm
+        nlohmann_json
     PRIVATE
         ${VULKAN_INCLUDE_DIRS}
         glfw
@@ -37,6 +50,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PUBLIC  
         glm
+        nlohmann_json
     PRIVATE
         ${Vulkan_LIBRARIES}
         glfw

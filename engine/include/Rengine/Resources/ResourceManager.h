@@ -5,13 +5,28 @@
 
 namespace RENGINE
 {
-    namespace Systems {
+    
+
+    namespace Systems 
+    {
+
+
+    template<typename ResourceType>
+    struct Resource_
+    {
+        ResourceType* type;
+        std::string name;
+        std::vector<std::string> requestQueue;
+    };
 
     template <typename... ResourceList>
     class ResourceManager_
     {
     public:
-        ResourceManager_() { s_instance = this; }
+        ResourceManager_() 
+        { 
+            s_instance = this;
+        }
         ~ResourceManager_() { m_deleteResources<ResourceList...>(); }
 
         ResourceManager_(const ResourceManager_&) = delete;
@@ -20,7 +35,7 @@ namespace RENGINE
         
 
         template<typename Resource>
-        inline static constexpr Resource*& getResource() { return s_instance->m_getResource<Resource>(); } 
+        inline static constexpr Resource*& getResource() {  return s_instance->m_getResource<Resource>(); } 
 
         template<typename... rest>
         inline static void provideResources()
@@ -35,7 +50,7 @@ namespace RENGINE
 
     private:
         template<typename Resource>
-        inline constexpr Resource*& m_getResource() { return std::get<Resource*>(m_Resources); }
+        inline constexpr Resource*& m_getResource() {  return std::get<Resource_<Resource>>(m_Resources).type;  }
 
         template<typename Resource, typename... rest>
         inline void m_provideResources()
@@ -49,19 +64,21 @@ namespace RENGINE
         template<typename Resource,typename ResourceIterator,typename... Resources> 
         inline void m_setBaseResource()
         {
-            
             if constexpr(std::is_base_of<ResourceIterator, Resource>())
             {
-                ResourceIterator*& base_resource = m_getResource<ResourceIterator>();
-                bool is_null = base_resource != nullptr;
-                if(is_null)  
-                    delete base_resource;
-                base_resource = reinterpret_cast<ResourceIterator*>(new Resource());
-                
+                Resource_<ResourceIterator>& base_resource = std::get<Resource_<ResourceIterator>>(m_Resources);
+                bool is_null = base_resource.type != nullptr;
+                if(is_null) 
+                    delete base_resource.type;
+
+                base_resource.type = reinterpret_cast<ResourceIterator*>(new Resource());
+                base_resource.name = Utilities::getClassName<Resource>();
+                //new_resource->requestQueue = ...TODO
+
                 if(is_null)
-                    LOG::info(std::string("Switching ") +  Utilities::getClassName<ResourceIterator>() + " platform to \'" +  Utilities::getClassName<Resource>() + "\'!");
+                    LOG::info(std::string("Resource [\' ") +  Utilities::getClassName<ResourceIterator>() + "\'] switching to \'" +  Utilities::getClassName<Resource>() + "\'!");
                 else
-                    LOG::info(std::string("Using ") +  Utilities::getClassName<ResourceIterator>() + " platform \'" +  Utilities::getClassName<Resource>() + "\'!");
+                    LOG::info(std::string("Resource [\'") +  Utilities::getClassName<ResourceIterator>() + "\'] = \'" +  Utilities::getClassName<Resource>() + "\'!");
             }
             else
             {
@@ -76,8 +93,9 @@ namespace RENGINE
         template<typename ResourceIterator,typename... Resources>
         inline void m_deleteResources()
         {
-            delete m_getResource<ResourceIterator>();
-            
+            auto resource = std::get<Resource_<ResourceIterator>>(m_Resources);
+            delete resource.type;
+
             if constexpr (sizeof...(Resources) > 0)
                 m_deleteResources<Resources...>();
         }
@@ -86,7 +104,7 @@ namespace RENGINE
         template<typename ResourceIterator,typename... Resources>
         inline void m_checkResourceState()
         {
-            if(m_getResource<ResourceIterator>() == nullptr)
+            if(std::get<Resource_<ResourceIterator>>(m_Resources).type == nullptr)
                 LOG::warning("Resource " + Utilities::quotate(Utilities::getClassName<ResourceIterator>()) + " not initialized!");
             
             if constexpr (sizeof...(Resources) > 0)
@@ -94,10 +112,9 @@ namespace RENGINE
         }
 
     private:
-        std::tuple<ResourceList*...> m_Resources;
+        std::tuple<Resource_<ResourceList>...> m_Resources;
         inline static ResourceManager_<ResourceList...>* s_instance;
     };
-
     }
 }
 

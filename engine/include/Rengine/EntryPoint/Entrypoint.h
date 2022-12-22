@@ -6,7 +6,7 @@ namespace RENGINE
     class Application
     {
     public:
-        Application(const std::string& settingsFilePath = "/home/szabi/Desktop/Rengine/engine/configs/example.config");
+        Application(const std::string& settingsFilePath = "/home/szabi/Desktop/Rengine/engine/configs/example.json");
         virtual ~Application();
 
         void run();

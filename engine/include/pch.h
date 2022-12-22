@@ -14,15 +14,13 @@
 #include <stdexcept>
 #include <fstream>
 #include <cstring>
+#include <list>
+#include <chrono>
 
 //3rd Pary libaries
 #include <glm/glm.hpp>
-
+#include <nlohmann/json.hpp>
 
 //Project precompiled headers
-#include <Rengine/Utilities/FileManager.h>
-#include <Rengine/Utilities/StringOperations.h>
-#include <Rengine/SettingsManager/ConfigManager.h>
-#include <Rengine/Resources/ResourceMacros.h>
 #include <Rengine/Utilities/LOG.h>
-#include <Rengine/SettingsManager/RenderSettings.h>
+#include <Rengine/Utilities/Utilities.h>

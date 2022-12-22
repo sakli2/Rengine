@@ -3,81 +3,67 @@
 #include <Rengine/Resources/ResourceManager.h>
 namespace RENGINE
 {
+    std::list<std::pair<std::function<void(const std::string&)>, std::string>> LOG::unprocessed_messages; 
 
-    void throw_error(const std::string& text)
+
+    void LOG::processMessages()
     {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->error(text);
-        else
+        for (auto& [func, param] : unprocessed_messages)
         {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << text << std::endl;
+            func(param);
         }
-        std::cin.get();
-    }
-
-
-    void LOG::warning(const std::string& text)
-    {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->warning(text);
-        else
-        {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << text << std::endl;
-        }
+        unprocessed_messages.clear();
     }
 
     void LOG::info(const std::string& text)
     {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->info(text);
-        else
+        Logger* activeLogger = ResourceManager::getResource<Logger>();
+        if(activeLogger)
         {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << "[INFO] " << text << std::endl;
+            processMessages();
+            activeLogger->info(text);
         }
-    }
+        else
+            baseInfoFunction(text);
 
-    void LOG::info(const int& text)
+    }
+    void LOG::warning(const std::string& text)
     {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->info(std::to_string(text));
-        else
+        Logger* activeLogger = ResourceManager::getResource<Logger>();
+        if(activeLogger)
         {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << "[INFO] " << std::to_string(text) << std::endl;
+            processMessages();
+            activeLogger->warning(text);
         }
-    }
-
-
-    void LOG::write(const std::string& text)
-    {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->write(text);
         else
-        {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << text << std::endl;
-        }
+            baseWarningFunction(text);
     }
-
 
     void LOG::error(const std::string& text)
     {
-        Logger* logger = ResourceManager::getResource<Logger>();
-        if(logger)
-            logger->error(text);
-        else
+        Logger* activeLogger = ResourceManager::getResource<Logger>();
+        if(activeLogger)
         {
-            std::cout << "[Warning] Logger not Initalized!" << std::endl;
-            std::cout << text << std::endl;
+            processMessages();
+            activeLogger->error(text);
         }
+        else
+            baseErrorFunction(text);
+    }
+
+
+
+    void LOG::baseInfoFunction(const std::string& message)
+    {
+        unprocessed_messages.emplace_back([&](const std::string& text ) { ResourceManager::getResource<Logger>()->info(text);}, message);
+    }
+    void LOG::baseWarningFunction(const std::string& message)
+    {
+        unprocessed_messages.emplace_back([&](const std::string& text ) { ResourceManager::getResource<Logger>()->warning(text);}, message);
+    }
+    void LOG::baseErrorFunction(const std::string& message)
+    {
+        unprocessed_messages.emplace_back([&](const std::string& text ) { ResourceManager::getResource<Logger>()->error(text);}, message);
     }
 }
 

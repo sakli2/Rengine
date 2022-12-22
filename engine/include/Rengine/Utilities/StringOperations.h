@@ -10,7 +10,7 @@ namespace RENGINE
     {
     public:
         template<typename T>
-        std::string static getClassName()
+        inline constexpr static std::string  getClassName()
         {
             int status;
             std::string className = std::string(abi::__cxa_demangle(typeid(T).name(),0,0,&status));
